@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Audio Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем ColorThief для извлечения доминирующих цветов из обложки -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Левая панель: настройки -->
+        <div class="controls">
+            <h1>🎵 Генератор видео</h1>
+            <p class="subtitle">Создай стильное 9:16 видео для трека</p>
+            
+            <div class="input-group">
+                <label for="audioInput">Аудио (MP3):</label>
+                <input type="file" id="audioInput" accept="audio/*">
+            </div>
+            
+            <div class="input-group">
+                <label for="coverInput">Обложка (желательно 1:1):</label>
+                <input type="file" id="coverInput" accept="image/*">
+            </div>
+            
+            <div class="input-group">
+                <label for="trackName">Название трека:</label>
+                <input type="text" id="trackName" placeholder="Например: Starboy" value="Track Name">
+            </div>
+            
+            <div class="input-group">
+                <label for="artistName">Имя артиста:</label>
+                <input type="text" id="artistName" placeholder="Например: The Weeknd" value="Artist Name">
+            </div>
+            
+            <div class="buttons">
+                <button id="previewBtn" disabled>▶️ Предпросмотр</button>
+                <button id="recordBtn" disabled>🔴 Записать видео</button>
+            </div>
+            
+            <div id="statusBox" class="status">Ожидание загрузки файлов...</div>
+            
+            <!-- Скрытый элемент audio для обработки звука -->
+            <audio id="audioElement" crossorigin="anonymous"></audio>
+            <!-- Скрытая картинка для работы ColorThief -->
+            <img id="hiddenCover" style="display: none;" crossorigin="anonymous">
+        </div>
+        
+        <!-- Правая панель: предпросмотр -->
+        <div class="preview-container">
+            <!-- Разрешение 720x1280 для формата 9:16 -->
+            <canvas id="renderCanvas" width="720" height="1280"></canvas>
+        </div>
+    </div>
+
+    <!-- Основной скрипт -->
+    <script src="script.js"></script>
+</body>
+</html>
